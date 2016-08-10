@@ -1,4 +1,5 @@
 FROM fedora:24
+LABEL src=https://github.com/csrwng/vim-base.git
 RUN dnf -y install \
       rsync \
       git \
@@ -16,7 +17,7 @@ RUN dnf -y install \
 ENV HOME=/home/user \
     TERM=xterm-256color
 RUN adduser -d ${HOME} -u 1001 default && \
-    mkdir /code &&
+    mkdir /code && \
     chmod 775 -R /home/user 
 COPY vimrc ${HOME}/.vimrc
 COPY gitconfig ${HOME}/.gitconfig
