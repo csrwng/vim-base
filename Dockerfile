@@ -7,6 +7,7 @@ RUN dnf -y install \
       vim \
       langpacks-en \
       automake \
+      cmake \
       python \
       python-devel \
       python3-devel \
