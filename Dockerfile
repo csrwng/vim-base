@@ -15,9 +15,15 @@ RUN dnf -y install \
     dnf -y groupinstall  \
       "C Development Tools and Libraries"
 ENV HOME=/home/user \
-    TERM=xterm-256color
+    TERM=xterm-256color \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    LANGUAGE=en_US.UTF-8 \
+    GIT_PROMPT_ONLY_IN_REPO=1
 RUN adduser -d ${HOME} -u 1001 default && \
     mkdir /code && \
-    chmod 775 -R /home/user 
+    chmod 775 -R /home/user && \
+    git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt --depth=1 && \
+    echo "source ~/.bash-git-prompt/gitprompt.sh" >> ${HOME}/.bashrc
 COPY gitconfig ${HOME}/.gitconfig
 COPY gitignore_global ${HOME}/.gitignore_global
