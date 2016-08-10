@@ -19,6 +19,5 @@ ENV HOME=/home/user \
 RUN adduser -d ${HOME} -u 1001 default && \
     mkdir /code && \
     chmod 775 -R /home/user 
-COPY vimrc ${HOME}/.vimrc
 COPY gitconfig ${HOME}/.gitconfig
 COPY gitignore_global ${HOME}/.gitignore_global
