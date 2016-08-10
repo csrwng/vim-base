@@ -22,9 +22,10 @@ ENV HOME=/home/user \
     GIT_PROMPT_ONLY_IN_REPO=1
 RUN adduser -d ${HOME} -u 1001 default && \
     mkdir /code && \
-    chmod 775 -R /home/user && \
-    git clone https://github.com/magicmonty/bash-git-prompt.git .bash-git-prompt --depth=1 && \
+    git clone https://github.com/magicmonty/bash-git-prompt.git ${HOME}/.bash-git-prompt --depth=1 && \
     echo "source ~/.bash-git-prompt/gitprompt.sh" >> ${HOME}/.bashrc && \
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
+    chown -R default ${HOME} && \
+    chmod 775 -R ${HOME}
 COPY gitconfig ${HOME}/.gitconfig
 COPY gitignore_global ${HOME}/.gitignore_global
